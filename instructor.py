@@ -1,5 +1,5 @@
+from student import Student
 # You must define a type for representing an instructor in code.
-
 # First name
 # Last name
 # Slack handle
@@ -16,12 +16,11 @@ class Instructor:
         self.instructor_cohort = cohort
         self.instructor_specialty = specialty
     
-    def assign_exercise(self):
-        pass
+    def assign(self, student, exercise):
+        student.current_exercises.append(exercise)
 
 
 
-# new_instructor = Instructor("bob", "jim", "bobjim", 38, "fun")
-# new_instructor.assign_exercise("do it")
+
 
 
