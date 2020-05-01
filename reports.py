@@ -2,6 +2,7 @@ import sqlite3
 from student import Student
 from instructor import Instructor
 from cohort import Cohort
+from exercise import Exercise
 
 class StudentExerciseReports():
 
@@ -86,8 +87,82 @@ class StudentExerciseReports():
             # for cohort in all_cohorts:
             #     print(cohort)
 
+    def all_exercises(self):
+
+        """Retrieve all exercises with the exercise name"""
+
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = lambda cursor, row: Exercise(
+                row[1], row[2])
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            select i.Id,
+                i.exercise_name,
+                i.exercise_language
+            from Exercise i
+            """)
+
+            all_exercises = db_cursor.fetchall()
+            [print(i) for i in all_exercises]
+
+            # for exercise in all_exercises:
+            #     print(exercise)
+
+
+    def all_javascript_exercises(self):
+
+        """Retrieve all exercises with the exercise name"""
+
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = lambda cursor, row: Exercise(
+                row[1], row[2])
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            select i.Id,
+                i.exercise_name,
+                i.exercise_language
+            from Exercise i
+            where i.exercise_language = 'JavaScript'
+            """)
+
+            all_exercises = db_cursor.fetchall()
+            [print(i) for i in all_exercises]
+
+            # for exercise in all_exercises:
+            #     print(exercise)
+
+    def all_python_exercises(self):
+
+        """Retrieve all exercises with the exercise name"""
+
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = lambda cursor, row: Exercise(
+                row[1], row[2])
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            select i.Id,
+                i.exercise_name,
+                i.exercise_language
+            from Exercise i
+            where i.exercise_language = 'Python'
+            """)
+
+            all_exercises = db_cursor.fetchall()
+            [print(i) for i in all_exercises]
+
+            # for exercise in all_exercises:
+            #     print(exercise)
+
+
+
 
 reports = StudentExerciseReports()
 # reports.all_students()
 # reports.all_instructors()
-reports.all_cohorts()
+# reports.all_cohorts()
+# reports.all_exercises()
+# reports.all_javascript_exercises()
+# reports.all_python_exercises()
