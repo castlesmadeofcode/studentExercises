@@ -9,6 +9,9 @@ class Student():
         self.slack_handle = handle
         self.cohort = cohort
 
+    def __repr__(self):
+        return f'{self.first_name} {self.last_name} is in {self.cohort}'
+
 
 class StudentExerciseReports():
 
@@ -39,9 +42,10 @@ class StudentExerciseReports():
             """)
 
             all_students = db_cursor.fetchall()
+            [print(s) for s in all_students]
+            # for student in all_students:
+            #     print(student)
 
-            for student in all_students:
-                print(f'{student.first_name} {student.last_name} is in {student.cohort}')
 
 reports = StudentExerciseReports()
 reports.all_students()
