@@ -43,6 +43,7 @@ class StudentExerciseReports():
 
             all_students = db_cursor.fetchall()
             [print(s) for s in all_students]
+
             # for student in all_students:
             #     print(student)
 
