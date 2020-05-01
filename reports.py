@@ -17,14 +17,14 @@ class StudentExerciseReports():
 
             db_cursor.execute("""
             select s.Id,
-                s.FirstName,
-                s.LastName,
-                s.SlackHandle,
-                s.CohortId,
-                c.Name
+                s.first_name,
+                s.last_name,
+                s.slack_handle,
+                s.cohortId,
+                c.cohort_name
             from Student s
-            join Cohort c on s.CohortId = c.Id
-            order by s.CohortId
+            join Cohort c on s.cohortId = c.Id
+            order by s.cohortId
             """)
 
             all_students = db_cursor.fetchall()
